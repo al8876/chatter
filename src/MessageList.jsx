@@ -9,6 +9,7 @@ class MessageList extends Component {
           <div key={message.id} className='message'>
             <span className='message-username'>{message.user}</span>
             <span className='message-content'>{message.text}</span>
+            <span className='message-time'>{message.date}</span>
           </div>
         );
       } else if (message.type === 'system'){

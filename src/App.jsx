@@ -11,31 +11,36 @@ class App extends Component {
       messages: [{
         id: 1,
         type: 'system',
-        text: 'Anonymous changed name to Bob'
+        text: 'Anonymous changed name to Bob',
       }, {
         id: 2,
         type: 'user',
         text: 'this is a test',
-        user: 'bob'
+        user: 'bob',
+        date: 'Tue, 20 Feb 2018 03:40:26 GMT'
       }, {
         id: 3,
         type: 'system',
-        text: 'Anonymous changed name to Susan'
+        text: 'Anonymous changed name to Susan',
       }, {
         id: 4,
         type: 'user',
         text: 'hot dog',
-        user: 'susan'
+        user: 'susan',
+        date: 'Tue, 20 Feb 2018 03:49:26 GMT'
       }]
     };
   }
 
     newMessage(messageText) {
+    var dt = new Date();
+    var utcDate = dt.toUTCString();
     const newMessageObject = {
       id: Math.random(),
       type: 'user',
       user: this.state.user,
-      text: messageText
+      text: messageText,
+      date: utcDate
     };
     const newMessages = this.state.messages.concat(newMessageObject);
     this.setState({

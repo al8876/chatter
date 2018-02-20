@@ -43,6 +43,7 @@ body {
   padding: 5px 20px;
 }
 
+.message-time,
 .message-content,
 .message-username {
   overflow: hidden;
@@ -57,6 +58,10 @@ body {
 .message-username {
   flex: 2;
   font-weight: 700;
+}
+
+.message-time {
+  font-style: italic;
 }
 
 .navbar {
