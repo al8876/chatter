@@ -32,7 +32,7 @@ class App extends Component {
     };
   }
 
-    newMessage(messageText, userName) {
+  newMessage(messageText, userName) {
     var dt = new Date();
     var utcDate = dt.toUTCString();
     const newMessageObject = {
@@ -49,16 +49,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount <App />");
+    console.log('componentDidMount <App />');
     setTimeout(() => {
-      console.log("Simulating incoming message");
       // Add a new message to the list of messages in the data store
-      const newMessage = {id: 10, username: "Michelle", content: "Hello there!"};
-      const messages = this.state.messages.concat(newMessage)
+      const newMessage = {id: 5, type: 'user', user: 'Michelle', text: 'Litty Kitty', date: new Date().toUTCString()};
+      const messages = this.state.messages.concat(newMessage);
+      console.log('Set State here!');
       // Update the state of the app component.
       // Calling setState will trigger a call to render() in App and all child components.
-      this.setState({messages: messages})
-    }, 3000);
+      this.setState({messages: messages});
+    }, 5000);
   }
 
   render() {
