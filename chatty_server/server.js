@@ -42,7 +42,7 @@ wss.on('connection', function (ws) {
   let cliendId = uuid();
   console.log('Client connected ', cliendId);
 
-  let color = ['red', 'blue', 'green', 'purple'];
+  let color = ['red', 'blue', 'green', 'purple', 'black', 'orange', 'brown', 'pink'];
   let randColor = color[Math.floor(Math.random() * color.length)];
 
   console.log('Sending Color: ', randColor);
