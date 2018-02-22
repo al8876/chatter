@@ -8,13 +8,12 @@ class App extends Component {
     super(props);
     this.state = {
       user: 'Anonymous User',
-      messages: []
+      messages: [],
+      activeUsers: undefined
     };
   }
 
   componentDidMount() {
-    console.log('componentDidMount <App />');
-
     this.socket = new WebSocket('ws://0.0.0.0:3001/');
 
     this.socket.onopen = (event) => {
@@ -22,32 +21,18 @@ class App extends Component {
     };
 
     this.socket.onmessage = (event) => {
-      console.log('New message being parsed: ', JSON.parse(event.data));
-      console.log('The state of THIS: ', this.state)
-      console.log('This is this.state.messages: ', this.state.messages)
-
+      console.log('This is the event: ', event);
       let data = JSON.parse(event.data);
-
-      const newMessages = this.state.messages.concat(JSON.parse(event.data));
-      this.setState({
-        messages: newMessages
-      });
-      
-      // switch(data.type) {
-      //   case 'incomingNotification':
-      //     const newMessages = this.state.messages.concat(JSON.parse(event.data));
-      //     this.setState({
-      //       messages: newMessages
-      //     });
-      //     break;
-      //   case "incomingMessage":
-      //     this.setState({
-      //       messages: newMessages
-      //     });
-      //   break;
-      //   default:
-      //     throw new Error('Unknown event type' + data.type);
-      // }
+      if (data['user']) {
+        const newMessages = this.state.messages.concat(JSON.parse(event.data));
+        this.setState({
+          messages: newMessages
+        });
+      } else {
+        this.setState({
+          activeUsers: JSON.parse(event.data)
+        })
+      }
     }
   }
 
@@ -62,7 +47,6 @@ class App extends Component {
     this.socket.send(JSON.stringify(newNotificationObject));
 
   }
-
 
   newMessage(messageText, userName) {
 
@@ -83,7 +67,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar activeUsers={this.state.activeUsers}/>
         <MessageList messages={this.state.messages}/>
         <Chatbar newMessage={this.newMessage.bind(this)} newNotification={this.newNotification.bind(this)}/>
       </div>
