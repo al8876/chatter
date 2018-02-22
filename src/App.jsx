@@ -9,7 +9,8 @@ class App extends Component {
     this.state = {
       user: 'Anonymous User',
       messages: [],
-      activeUsers: undefined
+      activeUsers: undefined,
+      color: undefined
     };
   }
 
@@ -23,16 +24,23 @@ class App extends Component {
     this.socket.onmessage = (event) => {
       console.log('This is the event: ', event);
       let data = JSON.parse(event.data);
+      console.log('This is parsed event: ', data);
+      console.log(typeof data);
       if (data['user']) {
         const newMessages = this.state.messages.concat(JSON.parse(event.data));
         this.setState({
           messages: newMessages
         });
+      } else if (typeof data === 'string') {
+        this.setState({
+          color: data
+        })
       } else {
         this.setState({
-          activeUsers: JSON.parse(event.data)
+          activeUsers: data
         })
       }
+      console.log('this is state: ', this.state);
     }
   }
 
@@ -68,7 +76,7 @@ class App extends Component {
     return (
       <div>
         <Navbar activeUsers={this.state.activeUsers}/>
-        <MessageList messages={this.state.messages}/>
+        <MessageList messages={this.state.messages} color={this.state.color}/>
         <Chatbar newMessage={this.newMessage.bind(this)} newNotification={this.newNotification.bind(this)}/>
       </div>
     );

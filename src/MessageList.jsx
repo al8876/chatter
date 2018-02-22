@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 
 class MessageList extends Component {
-  render(){  
+  render(){
+    let divStyle = {
+      color: this.props.color
+    };  
     const messages = this.props.messages.map((message) => {
       if (message.type === 'incomingMessage') {
         return (
           <div key={message.id} className='message'>
-            <span className='message-username'>{message.user}</span>
+            <span className='message-username' style={divStyle}>{message.user}</span>
             <span className='message-content'>{message.text}</span>
             <span className='message-time'>{message.date}</span>
           </div>
