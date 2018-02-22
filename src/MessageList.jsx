@@ -2,10 +2,12 @@ import React, {Component} from 'react';
 
 class MessageList extends Component {
   render(){
-    let divStyle = {
-      color: this.props.color
-    };  
     const messages = this.props.messages.map((message) => {
+
+      let divStyle = {
+        color: message.color
+      };
+      
       if (message.type === 'incomingMessage') {
         return (
           <div key={message.id} className='message'>

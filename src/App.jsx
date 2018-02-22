@@ -65,7 +65,8 @@ class App extends Component {
       type: 'postMessage',
       user: userName,
       text: messageText,
-      date: utcDate
+      date: utcDate,
+      color: this.state.color
     };
 
     this.socket.send(JSON.stringify(newMessageObject));
@@ -76,7 +77,7 @@ class App extends Component {
     return (
       <div>
         <Navbar activeUsers={this.state.activeUsers}/>
-        <MessageList messages={this.state.messages} color={this.state.color}/>
+        <MessageList messages={this.state.messages}/>
         <Chatbar newMessage={this.newMessage.bind(this)} newNotification={this.newNotification.bind(this)}/>
       </div>
     );
