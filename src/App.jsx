@@ -10,7 +10,8 @@ class App extends Component {
       user: 'Anonymous User',
       messages: [],
       activeUsers: undefined,
-      color: undefined
+      color: undefined,
+      img: undefined
     };
   }
 
@@ -25,7 +26,6 @@ class App extends Component {
       console.log('This is the event: ', event);
       let data = JSON.parse(event.data);
       console.log('This is parsed event: ', data);
-      console.log(typeof data);
       if (data['user']) {
         const newMessages = this.state.messages.concat(JSON.parse(event.data));
         this.setState({
@@ -66,7 +66,8 @@ class App extends Component {
       user: userName,
       text: messageText,
       date: utcDate,
-      color: this.state.color
+      color: this.state.color,
+      imgage: this.state.img
     };
 
     this.socket.send(JSON.stringify(newMessageObject));

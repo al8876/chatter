@@ -34,17 +34,21 @@ class Chatbar extends Component {
     if (event.key === 'Enter') {
       if (this.state.messageText ==='') {
         console.log('error: no text input for message');
+
       } else if (this.state.userName === ''){
         this.props.newMessage(this.state.messageText, 'Anonymous User');
         this.setState({messageText: ''});
+
       } else if(this.state.oldUsername !== this.state.userName && this.state.oldUsername === ''){
         this.props.newNotification(this.state.userName, 'Anonymous User');
         this.props.newMessage(this.state.messageText, this.state.userName);
         this.setState({messageText: '', userName: this.state.userName, oldUsername: this.state.userName});
+
       } else if(this.state.oldUsername !== this.state.userName){
         this.props.newNotification(this.state.userName, this.state.oldUsername);
         this.props.newMessage(this.state.messageText, this.state.userName);
         this.setState({messageText: '', userName: this.state.userName, oldUsername: this.state.userName});
+        
       } else if (this.state.userName === this.state.oldUsername){
         this.props.newMessage(this.state.messageText, this.state.userName);
         this.setState({messageText: '', userName: this.state.userName});
