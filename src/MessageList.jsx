@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 
 class MessageList extends Component {
-  render(){
-    console.log("Rendering <MessageList />");    
+  render(){  
     const messages = this.props.messages.map((message) => {
       if (message.type === 'incomingMessage') {
         return (
@@ -15,7 +14,7 @@ class MessageList extends Component {
       } else if (message.type === 'incomingNotification'){
         return (
           <div key={message.id} className='message system'>
-            {message.text}
+            {message.oldUser} has changed name to {message.user}
           </div>
         );
       }

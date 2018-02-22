@@ -51,6 +51,19 @@ class App extends Component {
     }
   }
 
+  newNotification(userName, oldUserName) {
+    const newNotificationObject = {
+      id: undefined,
+      type: 'postNotification',
+      user: userName,
+      oldUser: oldUserName
+    };
+
+    this.socket.send(JSON.stringify(newNotificationObject));
+
+  }
+
+
   newMessage(messageText, userName) {
 
     let dt = new Date();
@@ -68,12 +81,11 @@ class App extends Component {
   }
 
   render() {
-    console.log("Rendering <App/>");
     return (
       <div>
         <Navbar />
         <MessageList messages={this.state.messages}/>
-        <Chatbar newMessage={this.newMessage.bind(this)}/>
+        <Chatbar newMessage={this.newMessage.bind(this)} newNotification={this.newNotification.bind(this)}/>
       </div>
     );
   }
