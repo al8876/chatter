@@ -4,7 +4,7 @@ class MessageList extends Component {
   render(){
     console.log("Rendering <MessageList />");    
     const messages = this.props.messages.map((message) => {
-      if (message.type === 'user') {
+      if (message.type === 'incomingMessage') {
         return (
           <div key={message.id} className='message'>
             <span className='message-username'>{message.user}</span>
@@ -12,7 +12,7 @@ class MessageList extends Component {
             <span className='message-time'>{message.date}</span>
           </div>
         );
-      } else if (message.type === 'system'){
+      } else if (message.type === 'incomingNotification'){
         return (
           <div key={message.id} className='message system'>
             {message.text}

@@ -7,7 +7,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: 'Anon',
+      user: 'Anonymous User',
       messages: []
     };
   }
@@ -26,12 +26,28 @@ class App extends Component {
       console.log('The state of THIS: ', this.state)
       console.log('This is this.state.messages: ', this.state.messages)
 
-      
-      const newMessages = this.state.messages.concat(JSON.parse(event.data));
+      let data = JSON.parse(event.data);
 
+      const newMessages = this.state.messages.concat(JSON.parse(event.data));
       this.setState({
         messages: newMessages
       });
+      
+      // switch(data.type) {
+      //   case 'incomingNotification':
+      //     const newMessages = this.state.messages.concat(JSON.parse(event.data));
+      //     this.setState({
+      //       messages: newMessages
+      //     });
+      //     break;
+      //   case "incomingMessage":
+      //     this.setState({
+      //       messages: newMessages
+      //     });
+      //   break;
+      //   default:
+      //     throw new Error('Unknown event type' + data.type);
+      // }
     }
   }
 
@@ -41,7 +57,7 @@ class App extends Component {
     let utcDate = dt.toUTCString();
     const newMessageObject = {
       id: undefined,
-      type: 'user',
+      type: 'postMessage',
       user: userName,
       text: messageText,
       date: utcDate
