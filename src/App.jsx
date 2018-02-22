@@ -8,59 +8,46 @@ class App extends Component {
     super(props);
     this.state = {
       user: 'Anon',
-      messages: [{
-        id: 1,
-        type: 'system',
-        text: 'Anonymous changed name to Bob',
-      }, {
-        id: 2,
-        type: 'user',
-        text: 'Has anyone seen my marbles?',
-        user: 'bob',
-        date: 'Tue, 20 Feb 2018 03:40:26 GMT'
-      }, {
-        id: 3,
-        type: 'system',
-        text: 'Anonymous changed name to Susan',
-      }, {
-        id: 4,
-        type: 'user',
-        text: 'No, I think you lost them. You lost your marbles Bob. You lost them for good.',
-        user: 'susan',
-        date: 'Tue, 20 Feb 2018 03:49:26 GMT'
-      }]
+      messages: []
     };
   }
 
+  componentDidMount() {
+    console.log('componentDidMount <App />');
+
+    this.socket = new WebSocket('ws://0.0.0.0:3001/');
+
+    this.socket.onopen = (event) => {
+      console.log('Connection open');
+    };
+
+    this.socket.onmessage = (event) => {
+      console.log('New message being parsed: ', JSON.parse(event.data));
+      console.log('The state of THIS: ', this.state)
+      console.log('This is this.state.messages: ', this.state.messages)
+
+      
+      const newMessages = this.state.messages.concat(JSON.parse(event.data));
+
+      this.setState({
+        messages: newMessages
+      });
+    }
+  }
+
   newMessage(messageText, userName) {
-    var dt = new Date();
-    var utcDate = dt.toUTCString();
+
+    let dt = new Date();
+    let utcDate = dt.toUTCString();
     const newMessageObject = {
-      id: Math.random(),
+      id: undefined,
       type: 'user',
       user: userName,
       text: messageText,
       date: utcDate
     };
-    const newMessages = this.state.messages.concat(newMessageObject);
-    this.setState({
-      messages: newMessages
-    });
-  }
 
-  componentDidMount() {
-    console.log('componentDidMount <App />');
-    setTimeout(() => {
-      // Add a new message to the list of messages in the data store
-      const newMessage = {id: 5, type: 'user', user: 'Michelle', text: 'Litty Kitty', date: new Date().toUTCString()};
-      const messages = this.state.messages.concat(newMessage);
-      console.log('Set State here!');
-      // Update the state of the app component.
-      // Calling setState will trigger a call to render() in App and all child components.
-      this.setState({messages: messages});
-    }, 5000);
-
-    this.socket = new WebSocket('ws://0.0.0.0:3001/');
+    this.socket.send(JSON.stringify(newMessageObject));
 
   }
 

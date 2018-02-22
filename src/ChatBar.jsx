@@ -21,6 +21,9 @@ class Chatbar extends Component {
     if (event.key === 'Enter') {
       if (this.state.messageText ==='') {
         console.log('error: no text input for message');
+      } else if (this.state.userName === ''){
+        this.props.newMessage(this.state.messageText, 'Anonymous User');
+        this.setState({messageText: ''});
       } else {
         this.props.newMessage(this.state.messageText, this.state.userName);
         this.setState({messageText: '', userName: this.state.userName});
