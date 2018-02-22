@@ -44,12 +44,9 @@ wss.on('connection', function (ws) {
 
   let color = ['red', 'blue', 'green', 'purple'];
   let randColor = color[Math.floor(Math.random() * color.length)];
-  wss.clients.forEach(function each(client) {
-    console.log('Sending Color', color);
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(JSON.stringify(color));
-    }
-  });
+
+  console.log('Sending Color: ', randColor);
+  ws.send(JSON.stringify(randColor));
 
   ws.on('message', function incoming(message) {
     let object = JSON.parse(message)
