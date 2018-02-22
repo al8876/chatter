@@ -4,24 +4,18 @@ class MessageList extends Component {
   render(){
     const messages = this.props.messages.map((message) => {
 
+      // Style for username color
       let divStyle = {
         color: message.color
       };
-
-      let imgStyle = {
-        width: 300
-      }
       
       if (message.type === 'incomingMessage') {
 
-        let textContent = message.text;
-        console.log('This is text content: ', textContent);
-        let arrayOfText = textContent.split(' ');
-        console.log('This is the split text: ', arrayOfText);
-        let arrayNumber = arrayOfText.length - 1;
-        console.log('Array number: ', arrayNumber);
-        let endOfArray = arrayOfText[arrayNumber];
-        console.log('This is the 4th spot in endOfArray: ', endOfArray);
+        // Convert incoming message text into an array
+        let arrayOfText = message.text.split(' ');
+
+        // Find the last value of the message text array
+        let endOfArray = arrayOfText[arrayOfText.length -1];
 
         // Image Extension Variables
         let gif = 'gif';
@@ -30,30 +24,26 @@ class MessageList extends Component {
 
         // If last text element ends with one of Image Extension Variables
         if (endOfArray.endsWith(gif) || endOfArray.endsWith(png) || endOfArray.endsWith(jpg)) {
-          console.log('Last word includes the image extension');
-          
-          // Link to image for HREF
-          let imageLink = endOfArray;
 
           // Variable to remove link from text
           let sliceArray = arrayOfText.slice(0, -1)
-          console.log('SLICED ARRAY: ', sliceArray);
-          let messageNoLink = sliceArray.join(' ');
-          console.log('NO MESSAGE LINK: ', messageNoLink);
-          
 
-          console.log('This is IMAGE LINK: ', imageLink);
+          // Message without the image URL attached
+          let renderMessage = sliceArray.join(' ');
 
           return (
             <div key={message.id} className='message'>
               <span className='message-username' style={divStyle}>{message.user}</span>
-              <span className='message-content'>{messageNoLink}<a href={imageLink}><img src={imageLink} style={imgStyle} className='img'/></a></span>
+              {/* <span className='message-content'>{renderMessage}<a href={endOfArray}><img src={endOfArray} className='img'/></a></span> */}
+              <span className='message-content'>{renderMessage}</span>
+              <span className='message-image'><a href={endOfArray}><img src={endOfArray} className='img'/></a></span>
               <span className='message-time'>{message.date}</span>
             </div>
           );
-          
+        
+        // Else return without image tag in message-content
         } else {
-          console.log('Last word DID NOT include image extension');
+
           return (
             <div key={message.id} className='message'>
               <span className='message-username' style={divStyle}>{message.user}</span>
@@ -63,6 +53,7 @@ class MessageList extends Component {
           );
         };
 
+      // If message is of type 'incomingNotification' then italicize and display different
       } else if (message.type === 'incomingNotification'){
 
         return (
