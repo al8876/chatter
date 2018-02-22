@@ -31,16 +31,27 @@ class MessageList extends Component {
         // If last text element ends with one of Image Extension Variables
         if (endOfArray.endsWith(gif) || endOfArray.endsWith(png) || endOfArray.endsWith(jpg)) {
           console.log('Last word includes the image extension');
+          
+          // Link to image for HREF
           let imageLink = endOfArray;
-          let removedPictureLink = 
+
+          // Variable to remove link from text
+          let sliceArray = arrayOfText.slice(0, -1)
+          console.log('SLICED ARRAY: ', sliceArray);
+          let messageNoLink = sliceArray.join(' ');
+          console.log('NO MESSAGE LINK: ', messageNoLink);
+          
+
           console.log('This is IMAGE LINK: ', imageLink);
+
           return (
             <div key={message.id} className='message'>
               <span className='message-username' style={divStyle}>{message.user}</span>
-              <span className='message-content'>{message.text}<a href={imageLink}><img src={imageLink} style={imgStyle} className='img'/></a></span>
+              <span className='message-content'>{messageNoLink}<a href={imageLink}><img src={imageLink} style={imgStyle} className='img'/></a></span>
               <span className='message-time'>{message.date}</span>
             </div>
           );
+          
         } else {
           console.log('Last word DID NOT include image extension');
           return (
