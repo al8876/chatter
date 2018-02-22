@@ -32,13 +32,25 @@ wss.broadcast = function broadcast(data) {
 // When a client connects they are assigned a socket, represented by
 // the ws parameter in the callback.
 wss.on('connection', function (ws) {
+
   console.log('WSS CLIENTS: ', wss.clients.size);
   wss.broadcast(wss.clients.size);
   ws.on('error', (error) => {
     console.log('error');
   })
+
   let cliendId = uuid();
   console.log('Client connected ', cliendId);
+
+  let color = ['red', 'blue', 'green', 'purple'];
+  let randColor = color[Math.floor(Math.random() * color.length)];
+  wss.clients.forEach(function each(client) {
+    console.log('Sending Color', color);
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(color));
+    }
+  });
+
   ws.on('message', function incoming(message) {
     let object = JSON.parse(message)
     console.log(object);
@@ -58,4 +70,5 @@ wss.on('connection', function (ws) {
     console.log('WSS CLIENTS: ', wss.clients.size);
     wss.broadcast(wss.clients.size);
   });
+
 });
