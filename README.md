@@ -4,9 +4,29 @@ Chatter is a live, interactive chatroom built in React.js, WebSockets, and SASS.
 
 ## Images
 
-Homepage of Chatter
+### Homepage of Chatter
 
-!["Screenshot of homepage"](https://github.com/bartleyjulia/SMARTlist/blob/demo/docs/screenshot_homepage.png?raw=true)
+!["Screenshot of homepage"](https://github.com/al8876/chatter/blob/master/docs/Screen%20Shot%202018-02-23%20at%2012.06.10%20AM.png?raw=true)
+
+User can input a new username and display message.
+
+### Chatter Messages
+
+!["Screenshot of message"](https://github.com/al8876/chatter/blob/master/docs/Screen%20Shot%202018-02-23%20at%2012.07.32%20AM.png?raw=true)
+
+Displayed messages appear with attached username in different colours for individual user.
+
+### Sending Images through URL
+
+!["Screenshot of sending images"](https://github.com/al8876/chatter/blob/master/docs/chatter1.gif?raw=true)
+
+By inputting a image URL, Chatter can render the image to the online users.
+
+### Active Users Count
+
+!["Screenshot of sending images"](https://github.com/al8876/chatter/blob/master/docs/chatter2.gif?raw=true)
+
+Chatter displays total online users.
 
 ## Getting Started
 
