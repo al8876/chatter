@@ -1,6 +1,6 @@
 # Chatter
 
-Chatter is a live, interactive chatroom built in React.js, WebSockets, and SASS.
+Chatter is a live, anonymous, and interactive chatroom built in React.js, WebSockets, and SASS.
 
 ## Images
 
