@@ -30,6 +30,8 @@ Chatter displays total online users.
 
 ## Getting Started
 
+Repository includes two important directories: 
+
 - Clone Chatter respository
 - Install all dependencies (using the "npm install" command).
 - Using node.js, run "npm start" in the chatty_server directory.
@@ -38,6 +40,10 @@ Chatter displays total online users.
 
 ## Dependencies
 
-- Node 5.10.x or above
+- Node 6.x or above
 - React 15.4.x or above
 - React-dom 15.4.x or above
+- Express
+- SASS
+- Web Sockets
+- UUID
