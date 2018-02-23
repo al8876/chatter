@@ -88,7 +88,7 @@ class App extends Component {
     return (
       <div>
         <Navbar activeUsers={this.state.activeUsers}/>
-        <MessageList messages={this.state.messages}/>
+        <MessageList messages={this.state.messages} activeUsers={this.state.activeUsers}/>
         <Chatbar newMessage={this.newMessage.bind(this)} newNotification={this.newNotification.bind(this)}/>
       </div>
     );

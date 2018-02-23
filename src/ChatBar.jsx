@@ -92,6 +92,7 @@ class Chatbar extends Component {
   }
 
   render() {
+    let sendText = 'SEND IT ';
     return (
       <footer className='chatbar'>
 
@@ -111,7 +112,7 @@ class Chatbar extends Component {
         <button 
           className='chatbar-button'
           onClick={this.onButtonClick.bind(this)}>
-          SEND IT 
+          {sendText}
           <i className="fas fa-paper-plane"></i>
         </button>
 

@@ -26,7 +26,7 @@ class MessageList extends Component {
   }
 
   render(){
-
+    
     if (this.state.loading) {
       return <Loader/>;
     } else {
