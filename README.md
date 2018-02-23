@@ -47,3 +47,5 @@ Repository includes two important directories:
 - SASS
 - Web Sockets
 - UUID
+- Web Pack
+- Babel
