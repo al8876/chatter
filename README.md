@@ -33,7 +33,7 @@ Chatter displays total online users.
 Repository includes two important directories: 
 
 - Clone Chatter respository
-- Install all dependencies (using the "npm install" command).
+- Install all dependencies (using the "npm install" command) in both the Chatter main directory and Chatter server directory.
 - Using node.js, run "npm start" in the chatty_server directory.
 - Using node.js, run "npm start" in the main chatty directory.
 - On your browser, use the URL "http://localhost:3000" to access Chatter chat room.
