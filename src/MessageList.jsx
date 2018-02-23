@@ -11,7 +11,6 @@ class Loader extends Component {
 }
 
 class MessageList extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -19,9 +18,9 @@ class MessageList extends Component {
     }
   }
 
+  // Simulate loading
   componentDidMount() {
     setTimeout(() => {
-      console.log('simulating loading');
       this.setState({loading: false})
     }, 3000);
   }
@@ -61,14 +60,12 @@ class MessageList extends Component {
             let renderMessage = sliceArray.join(' ');
 
             return (
-              <div key={message.id} className='message'>
+              <div key={message.id} className='message userMessage'>
                 <span className='message-username' style={divStyle}>{message.user}</span>
                 <span className='message-content'>
                   {renderMessage}
                   <a href={endOfArray}><img src={endOfArray} className='img'/></a>
                 </span>
-                {/* <span className='message-content'>{renderMessage}</span> */}
-                {/* <span className='message-image'><a href={endOfArray}><img src={endOfArray} className='img'/></a></span> */}
                 <span className='message-time'>{message.date}</span>
               </div>
             );
@@ -77,7 +74,7 @@ class MessageList extends Component {
           } else {
 
             return (
-              <div key={message.id} className='message'>
+              <div key={message.id} className='message userMessage'>
                 <span className='message-username' style={divStyle}>{message.user}</span>
                 <span className='message-content'>{message.text}</span>
                 <span className='message-time'>{message.date}</span>

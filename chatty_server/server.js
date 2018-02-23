@@ -39,25 +39,26 @@ wss.on('connection', function (ws) {
     console.log('error');
   })
 
+  // Variable to invoke UUID generator
   let cliendId = uuid();
   console.log('Client connected ', cliendId);
 
+  // Color list of potential user colors
   let color = ['#2681C5', '#2C3B4D', '#CA5C1C', '#E12C3D', '#4B636D', '#1C3E46', '#39607D', '#1E7B7C'];
   let randColor = color[Math.floor(Math.random() * color.length)];
 
-  console.log('Sending Color: ', randColor);
+  // On connection, send user a random color from color list
   ws.send(JSON.stringify(randColor));
 
+  // Function to add object ID to incoming message and send as outgoing message
   ws.on('message', function incoming(message) {
     let object = JSON.parse(message)
-    console.log(object);
     object.id = uuid();
     if (object.type === 'postMessage') {
       object.type = 'incomingMessage'
     } else if (object.type === 'postNotification') {
       object.type = 'incomingNotification'
     }
-    console.log(object);
     wss.broadcast(JSON.stringify(object));
   });
 

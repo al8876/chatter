@@ -6,14 +6,18 @@ body {
   margin: 70px 0;
 }
 
+.messages {
+  margin-bottom: 115px;
+}
+
 .chatbar {
   background: rgb(73, 218, 223);
   bottom: 0;
   display: flex;
   left: 0;
   padding: 5px;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   position: fixed;
   right: 0;
   border: none;
@@ -30,22 +34,19 @@ body {
   border: none;
 }
 
-.chatbar-button :hover {
-  background-color: grey;
-  color: white;
+.chatbar-button:hover {
+  background-color: rgb(27, 69, 94);
 }
 
 .chatbar-button {
   flex: 2;
   background-color: rgb(43, 103, 138);
   color: white;
-  // font-family: "Brush Script MT";
   font-family: "Helvetica";
   font-size: 20px;
 }
 
 .chatbar-message {
-  // flex: 8;
   flex: 6;
 }
 
@@ -58,9 +59,20 @@ body {
   padding: 5px;
 }
 
+.userMessage {
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  background: white;
+  border-radius: 20px;
+  padding: 10px;
+}
+
 .message.system {
   font-style: italic;
   padding: 5px 20px;
+  margin-left: 15px;
 }
 
 .message-time,
@@ -114,6 +126,10 @@ body {
   padding: 0 10px;
   text-decoration: none;
   font-family: "Brush Script MT", cursive;
+}
+
+.navbar-brand:hover {
+  color: rgb(27, 69, 94);
 }
 
 .navbar h2 {

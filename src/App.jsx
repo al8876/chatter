@@ -3,6 +3,7 @@ import Navbar from './Navbar.jsx';
 import Chatbar from './Chatbar.jsx';
 import MessageList from './MessageList.jsx';
   
+// Create new App component
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,7 @@ class App extends Component {
     };
   }
 
+  // On page load - perform actions
   componentDidMount() {
     this.socket = new WebSocket('ws://0.0.0.0:3001/');
 
@@ -28,6 +30,7 @@ class App extends Component {
       console.log('Connection open');
     };
 
+    // Function to sort incoming data into correct states
     this.socket.onmessage = (event) => {
       console.log('This is the event: ', event);
       let data = JSON.parse(event.data);
@@ -46,10 +49,10 @@ class App extends Component {
           activeUsers: data
         })
       }
-      console.log('this is state: ', this.state);
     }
   }
 
+  // Method to handle Notification type messages
   newNotification(userName, oldUserName) {
     const newNotificationObject = {
       id: undefined,
@@ -62,6 +65,7 @@ class App extends Component {
 
   }
 
+  // Method to handle User Message type messages
   newMessage(messageText, userName) {
 
     let dt = new Date();

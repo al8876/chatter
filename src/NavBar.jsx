@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 
 class Navbar extends Component {
   render() {
+
+    // Assign different text to Nav bar based on active user count
     let activeUsers = this.props.activeUsers;
     if (activeUsers === 1) {
       let users = ' Lonely Chatter Online';
