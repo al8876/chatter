@@ -71,6 +71,12 @@ class Chatbar extends Component {
           className='chatbar-message'
           placeholder='Type a message and hit ENTER'
           onKeyPress={this.onMessageKeyPress.bind(this)} />
+        <button 
+          className='chatbar-button'
+          onClick={this.onMessageKeyPress.bind(this)}>
+          SEND IT 
+          <i className="fas fa-paper-plane"></i>
+        </button>
       </footer>
     );
   }

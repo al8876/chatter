@@ -19,6 +19,7 @@ body {
   border: none;
 }
 
+.chatbar-button,
 .chatbar-message,
 .chatbar-username {
   display: block;
@@ -29,8 +30,23 @@ body {
   border: none;
 }
 
+.chatbar-button :hover {
+  background-color: grey;
+  color: white;
+}
+
+.chatbar-button {
+  flex: 2;
+  background-color: rgb(43, 103, 138);
+  color: white;
+  // font-family: "Brush Script MT";
+  font-family: "Helvetica";
+  font-size: 20px;
+}
+
 .chatbar-message {
-  flex: 8;
+  // flex: 8;
+  flex: 6;
 }
 
 .chatbar-username {

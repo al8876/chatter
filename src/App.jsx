@@ -18,6 +18,12 @@ class App extends Component {
   componentDidMount() {
     this.socket = new WebSocket('ws://0.0.0.0:3001/');
 
+    // Import fontawesome script to body
+    const script = document.createElement('script');
+    script.src = "https://use.fontawesome.com/releases/v5.0.6/js/all.js";
+    script.async = true;
+    document.body.appendChild(script);
+
     this.socket.onopen = (event) => {
       console.log('Connection open');
     };
