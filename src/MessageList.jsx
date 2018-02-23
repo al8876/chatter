@@ -64,7 +64,7 @@ class MessageList extends Component {
               <div key={message.id} className='message'>
                 <span className='message-username' style={divStyle}>{message.user}</span>
                 <span className='message-content'>
-                  <p>{renderMessage}</p>
+                  {renderMessage}
                   <a href={endOfArray}><img src={endOfArray} className='img'/></a>
                 </span>
                 {/* <span className='message-content'>{renderMessage}</span> */}
