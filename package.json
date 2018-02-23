@@ -1,14 +1,14 @@
 {
-  "name": "react-simple-boilerplate",
+  "name": "chatter",
   "version": "1.0.0",
-  "description": "Simple and lightweight Boilerplate for ReactJS projects",
+  "description": "interactive chatroom built in react.js, websockets, and SASS",
   "scripts": {
     "lint": "eslint --ext .jsx,.js src",
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/noahlotzer/react-simple-boilerplate.git"
+    "url": "https://github.com/al8876/chatter"
   },
   "keywords": [
     "react",
@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/noahlotzer/react-simple-boilerplate/issues"
   },
-  "homepage": "https://github.com/noahlotzer/react-simple-boilerplate",
+  "homepage": "https://github.com/al8876/chatter",
   "engines": {
     "node": ">=6.0.0"
   },
