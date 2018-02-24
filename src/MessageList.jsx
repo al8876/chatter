@@ -84,12 +84,23 @@ class MessageList extends Component {
 
         // If message is of type 'incomingNotification' then italicize and display different
         } else if (message.type === 'incomingNotification'){
-
-          return (
-            <div key={message.id} className='message system'>
-              {message.oldUser} has changed name to {message.user}
-            </div>
-          );
+          if (message.log === 'in') {
+            return (
+              <div key={message.id} className='message system'>
+                A new user has logged in
+              </div>);
+          } else if (message.log === 'out') {
+            return (
+              <div key={message.id} className='message system'>
+                A user has has logged out
+              </div>);
+          } else {
+            return (
+              <div key={message.id} className='message system'>
+                {message.oldUser} has changed name to {message.user}
+              </div>
+            );
+          }
         }
       });
 

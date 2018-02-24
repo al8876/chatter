@@ -10,9 +10,6 @@ class App extends Component {
     this.state = {
       user: 'Anonymous User',
       messages: [],
-      activeUsers: undefined,
-      color: undefined,
-      img: undefined
     };
   }
 
@@ -35,7 +32,7 @@ class App extends Component {
       console.log('This is the event: ', event);
       let data = JSON.parse(event.data);
       console.log('This is parsed event: ', data);
-      if (data['user']) {
+      if (data['type']) {
         const newMessages = this.state.messages.concat(JSON.parse(event.data));
         this.setState({
           messages: newMessages
@@ -55,14 +52,12 @@ class App extends Component {
   // Method to handle Notification type messages
   newNotification(userName, oldUserName) {
     const newNotificationObject = {
-      id: undefined,
       type: 'postNotification',
       user: userName,
-      oldUser: oldUserName
+      oldUser: oldUserName,
+      log: undefined
     };
-
     this.socket.send(JSON.stringify(newNotificationObject));
-
   }
 
   // Method to handle User Message type messages
@@ -71,7 +66,6 @@ class App extends Component {
     let dt = new Date();
     let utcDate = dt.toUTCString();
     const newMessageObject = {
-      id: undefined,
       type: 'postMessage',
       user: userName,
       text: messageText,

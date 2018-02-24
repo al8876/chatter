@@ -33,6 +33,21 @@ wss.broadcast = function broadcast(data) {
 // the ws parameter in the callback.
 wss.on('connection', function (ws) {
 
+  let newUser = {
+    id: uuid(),
+    type: 'incomingNotification',
+    log: 'in',
+  };
+
+  let logOut = {
+    id: uuid(),
+    type: 'incomingNotification',
+    log: 'out',
+  };
+
+  // Displays new user is online
+  wss.broadcast(JSON.stringify(newUser));
+
   console.log('WSS CLIENTS: ', wss.clients.size);
   wss.broadcast(wss.clients.size);
   ws.on('error', (error) => {
@@ -54,6 +69,7 @@ wss.on('connection', function (ws) {
   ws.on('message', function incoming(message) {
     let object = JSON.parse(message)
     object.id = uuid();
+    console.log('THIS IS OBJECT:', object);
     if (object.type === 'postMessage') {
       object.type = 'incomingMessage'
     } else if (object.type === 'postNotification') {
@@ -64,9 +80,11 @@ wss.on('connection', function (ws) {
 
   // Set up a callback for when a client closes the socket. This usually means they closed their browser.
   ws.on('close', function() {
+
     console.log('Client disconnected');
     console.log('WSS CLIENTS: ', wss.clients.size);
     wss.broadcast(wss.clients.size);
+    wss.broadcast(JSON.stringify(logOut));
   });
 
 });
